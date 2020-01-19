@@ -1,0 +1,40 @@
+variables:
+  REPOSITORY_PATH: "/go/src/gitlab.com/staygo-backend/ssz"
+
+docker-build:
+  # Official docker image.
+  image: docker:latest
+  stage: build
+  tags:
+    - staygo-runner
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  script:
+    - export IMAGE=${CI_REGISTRY_IMAGE}:$(date "+%Y%m%d")-${CI_COMMIT_SHORT_SHA}
+    - echo "IMAGE = ${IMAGE}"
+    - docker build --pull -f docker/Dockerfile -t ${IMAGE} .
+    - docker push ${IMAGE}
+  only:
+    - master
+ 
+deploy:
+  image: registry.gitlab.com/staygo-devops/baseimage/docker-runner:latest
+  stage: deploy
+  tags:
+    - staygo-runner
+  services:
+    - docker:dind
+  before_script:
+    # loggin registry.gitlab.com #    
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    - export DOCKER_HOST="172.31.39.215:2376"
+  script:
+    - export IMAGE=${CI_REGISTRY_IMAGE}:$(date "+%Y%m%d")-${CI_COMMIT_SHORT_SHA}
+    - echo "IMAGE = ${IMAGE}"
+    - docker-compose -f docker/docker-compose.yml -p ${CI_PROJECT_NAME} down
+    - sleep 10
+    - docker-compose -f docker/docker-compose.yml -p ${CI_PROJECT_NAME} up -d
+  only:
+    - master
