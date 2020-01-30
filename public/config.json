@@ -1,0 +1,11 @@
+{
+    "game_id": "B4A815FEE1EF71AB2B515C6E1C4D1343",
+    "game_name": "fourknife",
+    "version": "0.1",
+    "game_host": "fourknife-flow-dev.techidea.cloud",
+    "game_port": 21803,
+    "api_host": "fourknife-logic-dev.techidea.cloud/v1/apis/fourknife",
+    "redirect_url": "https://fourknife-web-dev.techidea.cloud/168",
+    "secure": true,
+    "debug": true
+}

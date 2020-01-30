@@ -1,0 +1,151 @@
+export const Command = {
+	CommonPing:11000,
+	CommonPong:10000,
+	CommonLogin:11001,
+	CommonLoginAck:10001,
+	CommonLogout:11002,
+	CommonLogoutAck:10002,
+	CommonKickPlayer:11003,
+	CommonKickPlayerAckL:10003,
+	CommonAnnounce:11004,
+	CommonAnnounceAck:10004,
+	CommonBroadcast:11005,
+	CommonBroadcastAck:10005,
+	CommonMaintain:11006,
+    CommonMaintainAck:10006,
+    
+    PlayerJoinLobby:11011,
+	PlayerJoinRoom  : 11012,
+	PlayerJoinLobbyAck : 10011,
+	PlayerJoinRoomAck  : 10012,
+
+	PlayerWaitToJoinTable : 11013,
+	PlayerJoinTable       : 11014,
+	PlayerLeaveTable      : 11015,
+	PlayerSeatHandUp      : 11018,
+
+	PlayerWaitToJoinTableAck : 10013,
+	PlayerJoinTableAck       : 10014,
+	PlayerLeaveTableAck      : 10015,
+	PlayerSeatSit            : 10016,
+	PlayerSeatHandUpCheck    : 10017,
+	PlayerSeatHandUpAck      : 10018,
+	PlayerSeatReady          : 10019,
+
+	PlayerListRooms    : 11020,
+	PlayerListRoomsAck : 10020,
+
+	PlayerLeaveRoom    : 11021,
+	PlayerLeaveRoomAck : 10021,
+
+}
+
+export const CommandMap = {
+    // ErrorMsg
+    [Command.S2C_ErrorAck]: "S2C_ErrorAck", 
+    // Base     
+    [Command.S2C_MemberBalance]: "S2C_MemberBalance",
+
+	[Command.CommonPing]:"CP_Ping",
+	[Command.CommonPong]:"CP_Pong",
+	[Command.CommonLogin]:"CP_Login",
+	[Command.CommonLoginAck]:"CP_LoginAck",
+	[Command.CommonLogout]:"CP_Logout",
+	[Command.CommonLogoutAck]:"CP_LogoutAck",
+	[Command.CommonKickPlayer]:"CP_KickPlayer",
+	[Command.CommonKickPlayerAckL]:"CP_KickPlayerAck",
+	[Command.CommonAnnounce]:"CP_Announce",
+	[Command.CommonAnnounceAck]:"CP_AnnounceAck",
+	[Command.CommonBroadcast]:"CP_Broadcast",
+	[Command.CommonBroadcastAck]:"CP_BroadcastAck",
+	[Command.CommonMaintain]:"CP_Haintain",
+    [Command.CommonMaintainAck]:"CP_MaintainAck",
+    
+    [Command.PlayerJoinLobby]:"CP_PlayerJointLobby",
+	[Command.PlayerJoinRoom]  : "CP_PlayerJoinRoom",
+
+	[Command.PlayerJoinLobbyAck] : "CP_PlayerJoinLobbyAck",
+	[Command.PlayerJoinRoomAck]  : "CP_JoinRoomAck",
+
+	[Command.PlayerWaitToJoinTable] : "CP_PlayerWaitToJoinTable",
+	[Command.PlayerJoinTable]       : "PCP_layerJoinTable",
+	[Command.PlayerLeaveTable]     : "CP_PlayerLeaveTable",
+	[Command.PlayerSeatHandUp]     : "CP_PlayerSeatHandUp",
+
+	[Command.PlayerWaitToJoinTableAck] : "CP_PlayerWaitToJoinTableAck",
+	[Command.PlayerJoinTableAck]       : "CP_PlayerJoinTableAck",
+	[Command.PlayerLeaveTableAck]     : "CP_PlayerLeaveTableAck",
+	[Command.PlayerSeatSit]           : "CP_PlayerSeatSit",
+	[Command.PlayerSeatHandUpCheck]   : "CP_PlayerSeatHandUpCheck",
+	[Command.PlayerSeatHandUpAck]     : "CP_PlayerSeatHandUpAck",
+	[Command.PlayerSeatReady]         : "CP_PlayerSeatReady",
+
+	[Command.PlayerListRooms]   : "CP_PlayerListRooms",
+	[Command.PlayerListRoomsAck] : "CP_PlayerListRoomsAck",
+
+	[Command.PlayerLeaveRoom]    : "CP_PlayerLeaveRoom",
+	[Command.PlayerLeaveRoomAck] : "CP_PlayerLeaveRoomAck",
+}
+
+export const PokerCard = {
+	900:	"Joker1",
+	901:	"Joker2",
+
+	401:	"AceOfSpade",
+	402:	"TwoOfSpade",
+	403:	"ThreeOfSpade",
+	404:	"FourOfSpade",
+	405:	"FiveOfSpade",
+	406:	"SixOfSpade",
+	407:	"SevenOfSpade",
+	408:	"EightOfSpade",
+	409:	"NineOfSpade",
+	410:	"TenOfSpade",
+	411:	"JackOfSpade",
+	412:	"QueenOfSpade",
+	413:	"KingOfSpade",
+
+	301:	"AceOfHeart",
+	302:	"TwoOfHeart",
+	303:	"ThreeOfHeart",
+	304:	"FourOfHeart",
+	305:	"FiveOfHeart",
+	306:	"SixOfHeart",
+	307:	"SevenOfHeart",
+	308:	"EightOfHeart",
+	309:	"NineOfHeart",
+	310:	"TenOfHeart",
+	311:	"JackOfHeart",
+	312:	"QueenOfHeart",
+	313:	"KingOfHeart",
+
+	201:	"AceOfDiamond",
+	202:	"TwoOfDiamond",
+	203:	"ThreeOfDiamond",
+	204:	"FourOfDiamond",
+	205:	"FiveOfDiamond",
+	206:	"SixOfDiamond",
+	207:	"SevenOfDiamond",
+	208:	"EightOfDiamond",
+	209:	"NineOfDiamond",
+	210:	"TenOfDiamond",
+	211:	"JackOfDiamond",
+	212:	"QueenOfDiamond",
+	213:	"KingOfDiamond",
+
+	101:	"AceOfClub",
+	102:	"TwoOfClub",
+	103:	"ThreeOfClub",
+	104:	"FourOfClub",
+	105:	"FiveOfClub",
+	106:	"SixOfClub",
+	107:	"SevenOfClub",
+	108:	"EightOfClub",
+	109:	"NineOfClub",
+	110:	"TenOfClub",
+	111:	"JackOfClub",
+	112:	"QueenOfClub",
+	113:	"KingOfClub",
+
+
+}
