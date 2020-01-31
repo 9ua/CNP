@@ -103,7 +103,7 @@ const actions = {
   },
   
   CP_PlayerJoinRoom ({ dispatch, commit, state, rootState, getters, rootGetters }, payload) {
-    console.log({ cmd: Command.PlayerJoinRoom ,success: true,data :{ room_id: payload} })
+    console.log("蛤？",{ cmd: Command.PlayerJoinRoom ,success: true,data :{ room_id: payload} })
         dispatch("send", { cmd: Command.PlayerJoinRoom ,success: true ,data :{ room_id: payload} });
         
   },
@@ -115,8 +115,8 @@ const actions = {
     dispatch("send", { cmd: Command.PlayerSeatHandUp,data :{ handup: true} });
   },
   CP_PlayerWaitToJoinTable({ dispatch, commit, state, rootState, getters, rootGetters }, payload) {
-    console.log({ cmd: Command.PlayerJoinRoom ,success: true,data :{ room_id: payload} })
-    dispatch("send", { cmd: Command.PlayerWaitToJoinTable ,success: true ,data :{ room_id: payload} });
+    console.log("看妳唻耊藏啥小",{ cmd: Command.PlayerWaitToJoinTable ,data :{ room_id: payload} })
+    dispatch("send", { cmd: Command.PlayerWaitToJoinTable ,data :{ room_id: 1} });
     
   },
   CP_PlayerWaitToJoinTableAck({ dispatch, commit, state, rootState, getters, rootGetters }, payload) {
@@ -124,8 +124,7 @@ const actions = {
     
   },
   CP_JoinRoomAck({ dispatch, commit, state, rootState, getters, rootGetters }, payload) {
-    console.log({ cmd: Command.PlayerJoinRoom ,success: true,})
-    dispatch("CP_PlayerWaitToJoinTable",{ cmd: Command.PlayerWaitToJoinTable ,})
+    dispatch("CP_PlayerWaitToJoinTable",{ room_id: payload })
   },
 
   
@@ -173,7 +172,10 @@ const actions = {
     //發牌
     commit("CP_TableFlowDecisionDone",payload);
   },
-
+  
+  CP_Logout({ dispatch, commit, state, rootState, getters, rootGetters }, payload) {
+    dispatch("send", { cmd: Command.CommonLogout});
+  },
 
   C2S_Logout({ dispatch, commit, state, rootState, getters, rootGetters }, payload) {
       dispatch("setting/showLoading", {}, { root: true });

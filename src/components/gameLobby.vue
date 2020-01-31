@@ -27,7 +27,7 @@
     </div>
       <h2 class="divid">123</h2>
       <button class="btn1" v-on:click="room"> 俱樂部 </button>
-      <button class="btn1"> 錦標賽 </button>
+      <button class="btn1" v-on:click="off"> 錦標賽 </button>
   </div>
 </template>
 
@@ -55,7 +55,7 @@ export default {
 
   },
   methods: {
-    ...mapActions("socket", ["CP_PlayerListRooms","CP_PlayerJoinRoom","CP_PlayerSeatHandUp"]),
+    ...mapActions("socket", ["CP_PlayerListRooms","CP_PlayerJoinRoom","CP_PlayerSeatHandUp","CP_Logout"]),
     room() {
       this.CP_PlayerListRooms();
       this.roomList = this.$store.state.socket.roomList;
@@ -68,6 +68,9 @@ export default {
       this.CP_PlayerJoinRoom(payload);
       this.roomlistwrap =! this.roomlistwrap;
       this.handupPop =! this.handupPop;
+    },
+    off(){
+      this.CP_Logout();
     },
     handup(){
       this.CP_PlayerSeatHandUp();

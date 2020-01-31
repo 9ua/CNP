@@ -4,9 +4,9 @@
     <div style="position:absolute;bottom: 0px; width:80%; margin:auto ">
         <ul v-show="$store.state.socket.showhandcards" style="width:100%;height:25vh;display:flex; clear: both;">
           <li  v-for="(item, index) in $store.state.socket.handcards" :key="index" style="border:3px #FFAC55 solid;margin-left:-3%;float:left;width:10%;text-align:center; height:80%; margin:2px;background:#999;color:#fff;display:block;">
-            <img :src="'assets/'+item+'.png'" alt="">
-            index:{{index}}<br>
-            cards:  {{item}} 
+            <img :src="'assets/poker_card/'+item+'.png'" alt="">
+            <!-- index:{{index}}<br>
+            cards:  {{item}}  -->
           </li>
         </ul>
     </div>
