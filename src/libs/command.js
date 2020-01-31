@@ -38,6 +38,32 @@ export const Command = {
 	PlayerLeaveRoom    : 11021,
 	PlayerLeaveRoomAck : 10021,
 
+	GamePlayerInfo : 90001,
+	TableFlowHandupPlayers : 90011,
+	GameRoomRule  : 90022,
+	GameTableRule : 90023,
+
+	TableFlowGameRound  : 90031,
+	TableFlowShuffle    : 90032,
+	TableFlowRandomCard : 90033,
+	TableFlowDeal       : 90034,
+	TableFlowSeatCard   : 90035,
+	TableFlowPatternRecommand : 90041,
+	TableFlowChoosePattern    : 90042,
+	TableFlowDecisionDone     : 90043,
+	TableFlowShowPlayerCards : 90051,
+	TableFlowShowFront       : 90052,
+	TableFlowShowMiddle      : 90053,
+	TableFlowShowBack        : 90054,
+	TableFlowShowSpecial     : 90055,
+	TableFlowShowGan         : 90056,
+	TableFlowShowHomerun     : 90057,
+	TableFlowCompareResult   : 90058,
+	TableFlowShowWinLose         : 90071,
+	TableFlowShowCards           : 90072,
+	TableFlowSettlementEnd       : 90073,
+	TableFlowNextRoundRemainTime : 90074,
+
 }
 
 export const CommandMap = {
@@ -72,6 +98,9 @@ export const CommandMap = {
 	[Command.PlayerLeaveTable]     : "CP_PlayerLeaveTable",
 	[Command.PlayerSeatHandUp]     : "CP_PlayerSeatHandUp",
 
+
+	[Command.GamePlayerInfo] : "CP_GamePlayerInfo",
+
 	[Command.PlayerWaitToJoinTableAck] : "CP_PlayerWaitToJoinTableAck",
 	[Command.PlayerJoinTableAck]       : "CP_PlayerJoinTableAck",
 	[Command.PlayerLeaveTableAck]     : "CP_PlayerLeaveTableAck",
@@ -85,6 +114,30 @@ export const CommandMap = {
 
 	[Command.PlayerLeaveRoom]    : "CP_PlayerLeaveRoom",
 	[Command.PlayerLeaveRoomAck] : "CP_PlayerLeaveRoomAck",
+	[Command.TableFlowHandupPlayers] : "CP_TableFlowHandupPlayers",
+	[Command.GameRoomRule]  : "CP_GameRoomRule",
+	[Command.GameTableRule] : "CP_GameTableRule",
+
+	[Command.TableFlowGameRound]  : "CP_TableFlowGameRound",
+	[Command.TableFlowShuffle]    : "CP_TableFlowShuffle",
+	[Command.TableFlowRandomCard] : "CP_TableFlowRandomCard",
+	[Command.TableFlowDeal]       : "CP_TableFlowDeal",
+	[Command.TableFlowSeatCard]   : "CP_TableFlowSeatCard",
+	[Command.TableFlowPatternRecommand] : "CP_TableFlowPatternRecommand",
+	[Command.TableFlowChoosePattern]    : "CP_TableFlowChoosePattern",
+	[Command.TableFlowDecisionDone]     : "CP_TableFlowDecisionDone",
+	[Command.TableFlowShowPlayerCards] : "CP_TableFlowShowPlayerCards",
+	[Command.TableFlowShowFront]       : "CP_TableFlowShowFront",
+	[Command.TableFlowShowMiddle]      : "CP_TableFlowShowMiddle",
+	[Command.TableFlowShowBack]        : "CP_TableFlowShowBack",
+	[Command.TableFlowShowSpecial]     : "CP_TableFlowShowSpecial",
+	[Command.TableFlowShowGan]         : "CP_TableFlowShowGan",
+	[Command.TableFlowShowHomerun]     : "CP_TableFlowShowHomerun",
+	[Command.TableFlowCompareResult]   : "CP_TableFlowCompareResult",
+	[Command.TableFlowShowWinLose]         : "CP_TableFlowShowWinLose",
+	[Command.TableFlowShowCards]           : "CP_TableFlowShowCards",
+	[Command.TableFlowSettlementEnd]       : "CP_TableFlowSettlementEnd",
+	[Command.TableFlowNextRoundRemainTime] : "CP_TableFlowNextRoundRemainTime",
 }
 
 export const PokerCard = {

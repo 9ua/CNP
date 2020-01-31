@@ -35,8 +35,7 @@ export default {
   },
   methods: {
     wsConnect(){
-        // proxy.connect(`ws://13.230.92.57:8081/ws`);
-      let gameServer =`ws://13.230.92.57:8081/ws`;
+      let gameServer =`ws://`;
       this.$store.dispatch("socket/connect", { gameServer });
     },
     getConfigResult (res) {

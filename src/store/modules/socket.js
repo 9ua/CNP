@@ -10,6 +10,8 @@ const state = {
   roomList: [],
   position: Position.Init,
   roomType:'',
+  handsup:false,
+  handsupCountdown:'',
 }
 
 const getters = {
@@ -92,11 +94,19 @@ const actions = {
         
   },
 
-  S2C_WalletTransferAck({ dispatch, commit, state, rootState, getters, rootGetters }, payload) {
-      dispatch("setting/hideLoading", {}, { root: true });
-      dispatch("game/S2C_WalletTransferAck", payload, { root: true });
+  CP_PlayerWaitToJoinTable({ dispatch, commit, state, rootState, getters, rootGetters }, payload) {
+    console.log({ cmd: Command.PlayerJoinRoom ,success: true,data :{ room_id: payload} })
+    dispatch("send", { cmd: Command.PlayerWaitToJoinTable ,success: true ,data :{ room_id: payload} });
+    
   },
-
+  CP_PlayerWaitToJoinTableAck({ dispatch, commit, state, rootState, getters, rootGetters }, payload) {
+    console.log("123");
+    
+  },
+  CP_JoinRoomAck({ dispatch, commit, state, rootState, getters, rootGetters }, payload) {
+    console.log({ cmd: Command.PlayerJoinRoom ,success: true,})
+    dispatch("CP_PlayerWaitToJoinTable",{ cmd: Command.PlayerWaitToJoinTable ,})
+  },
   C2S_Logout({ dispatch, commit, state, rootState, getters, rootGetters }, payload) {
       dispatch("setting/showLoading", {}, { root: true });
       dispatch("beforeSend", { cmd: Command.C2S_Logout, data: payload });
@@ -107,8 +117,9 @@ const actions = {
       dispatch("game/S2C_LogoutAck", payload, { root: true });
   },
 
-  C2S_PingPong({ dispatch, commit, state, rootState, getters, rootGetters }, payload) {
-      dispatch("beforeSend", { cmd: Command.C2S_PingPong, data: payload });
+  CP_TableFlowHandupPlayers({ dispatch, commit, state, rootState, getters, rootGetters }, payload) {
+      console.log("倒數囉姐姐",payload);
+    commit("CP_TableFlowHandupPlayers",payload);
   },
 
   S2C_PingPongAck({ dispatch, commit, state, rootState, getters, rootGetters }, payload) {
@@ -460,6 +471,15 @@ const mutations = {
     },
     CP_PlayerJoinLobbyAck() {
         state.position = Position.Lobby;
+    },
+    CP_TableFlowHandupPlayers(state, payload) {
+        state.handsupCountdown = payload.data.Time;
+        if(state.handsupCountdown == 1) {
+            setTimeout(() => {
+                state.handsupCountdown = 0;
+            }, 1000);
+        }
+        console.log("倒數囉哥哥",payload.data.Time);
     },
 
 }

@@ -7,12 +7,23 @@
             <div style="height:80%">
             index:{{index}}, name:  {{item.name}} <br>
             一分 {{item.lower_amount}} 
+
+            
             </div>
             <button @click="joinRoom(item)" style="height:40px;background:red;margin:0 auto"> 加入牌桌</button>
           </li>
         </ul>
       </div>
       <div class="popup_mask" v-show="roomlistwrap" @click="roomlistwrap =! roomlistwrap"></div>
+    </div>
+    <div class="popup_wrapper" v-show="handupPop">
+      <div style="text-align:center;background:#333;width:400px;height:200px;margin:20vh auto;">
+            <div :v-model="$store.state.socket.handsupCountdown"> 
+             <h2 style="color:#ffffff">{{$store.state.socket.handsupCountdown}} 秒</h2> 
+            </div>
+            <button @click="handup" style="height:40px;background:red;margin:0 auto"> 確認</button>
+      </div>
+      <div class="popup_mask" v-show="handupPop" @click="handupPop =! handupPop"></div>
     </div>
       <h2 class="divid">123</h2>
       <button class="btn1" v-on:click="room"> 俱樂部 </button>
@@ -34,6 +45,7 @@ export default {
         roomList:[],
         respon: [],
         roomlistwrap:false,
+        handupPop:false,
     }
   },
   created() {
@@ -55,11 +67,15 @@ export default {
           this.getListRoom();
           console.log(this.btn1Open);
     },
+    handup(){
+      console.log("真的假的倒數喔",this.$store.state.socket.handsupCountdown,this.$store.state.socket.roomType)
+    },
     joinRoom(item){
-      // console.log(item.id);
       let payload = item.id;
       this.$store.state.socket.roomType = item.id;  //直接修改state 待修正
       this.CP_PlayerJoinRoom(payload);
+      this.roomlistwrap =! this.roomlistwrap;
+      this.handupPop =! this.handupPop;
     }
 
   },
