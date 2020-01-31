@@ -12,13 +12,20 @@ const state = {
   roomType:'',
   handsup:false,
   handsupCountdown:'',
+  handupAlready:false,
+  players:[],
+  showhandcards:false,
+  handcards:[],
+  choosetime:'',
 }
 
 const getters = {
     inLobby: (state, getters, rootState, rootGetters) => {
+        console.log("GETTER-INLOBBY",state.position,Position.Lobby,Position.Room);
         return state.position === Position.Lobby;
     },
     inRoom: (state, getters, rootState, rootGetters) => {
+        console.log("GETTER-INLOBBY",state.position,Position.Lobby,Position.Room);
         return state.position === Position.Room;
     }
 }
@@ -83,9 +90,16 @@ const actions = {
     // console.log(payload,"看看")
     commit("CP_PlayerListRoomsAck",payload);
   },
+  CP_PlayerJoinTable ({ dispatch, commit, state, rootState, getters, rootGetters }, payload) {
+        console.log("加入牌桌動作",getters.inRoom);
+        commit("CP_PlayerJoinTable",payload);
+        console.log("加入牌桌動作",getters.inRoom);
+  },
   CP_PlayerJoinLobbyAck ({ dispatch, commit, state, rootState, getters, rootGetters }, payload) {
-        console.log("加入大廳動作",getters.inLobby);
-        commit("CP_PlayerJoinLobbyAck",payload);
+    console.log("加入大廳動作",getters.inLobby);
+    // commit("CP_PlayerJoinLobbyAck",payload);
+    commit("CP_PlayerJoinLobbyAck",payload);
+    console.log("加入大廳動作",getters.inLobby);
   },
   
   CP_PlayerJoinRoom ({ dispatch, commit, state, rootState, getters, rootGetters }, payload) {
@@ -93,7 +107,13 @@ const actions = {
         dispatch("send", { cmd: Command.PlayerJoinRoom ,success: true ,data :{ room_id: payload} });
         
   },
-
+  CP_PlayerSeatHandUpAck ({ dispatch, commit, state, rootState, getters, rootGetters }, payload) {
+    commit("CP_PlayerSeatHandUpAck",payload);
+  },
+  
+  CP_PlayerSeatHandUp ({ dispatch, commit, state, rootState, getters, rootGetters }, payload) {
+    dispatch("send", { cmd: Command.PlayerSeatHandUp,data :{ handup: true} });
+  },
   CP_PlayerWaitToJoinTable({ dispatch, commit, state, rootState, getters, rootGetters }, payload) {
     console.log({ cmd: Command.PlayerJoinRoom ,success: true,data :{ room_id: payload} })
     dispatch("send", { cmd: Command.PlayerWaitToJoinTable ,success: true ,data :{ room_id: payload} });
@@ -107,6 +127,54 @@ const actions = {
     console.log({ cmd: Command.PlayerJoinRoom ,success: true,})
     dispatch("CP_PlayerWaitToJoinTable",{ cmd: Command.PlayerWaitToJoinTable ,})
   },
+
+  
+  CP_TableFlowInit({ dispatch, commit, state, rootState, getters, rootGetters }, payload) {
+    //清理預設數據  重置桌面
+  },
+
+  
+  CP_GamePlayerInfo({ dispatch, commit, state, rootState, getters, rootGetters }, payload) {
+    //清理預設數據  重置桌面
+    state.players = payload.data.player;
+    console.log("桌上玩家資訓",payload.data.player);
+  },
+  
+  CP_GameRoomRule({ dispatch, commit, state, rootState, getters, rootGetters }, payload) {
+    //房間規則  樂透彩池
+  },
+  
+  CP_GameTableRule({ dispatch, commit, state, rootState, getters, rootGetters }, payload) {
+    //牌桌規則
+            // table_type: 1
+            // seat_count: 4
+            // round_count: 1
+            // poker_count: 1
+            // joker_count: 0
+            // handcard_count: 13
+  },
+  
+  CP_TableFlowGameBegin({ dispatch, commit, state, rootState, getters, rootGetters }, payload) {
+    //遊戲開始
+  },
+
+  
+  CP_TableFlowSeatCard({ dispatch, commit, state, rootState, getters, rootGetters }, payload) {
+    //發牌
+    commit("CP_TableFlowSeatCard",payload);
+  },
+  
+  CP_TableFlowChoosePattern({ dispatch, commit, state, rootState, getters, rootGetters }, payload) {
+    //發牌
+    commit("CP_TableFlowChoosePattern",payload);
+  },
+  
+  CP_TableFlowDecisionDone({ dispatch, commit, state, rootState, getters, rootGetters }, payload) {
+    //發牌
+    commit("CP_TableFlowDecisionDone",payload);
+  },
+
+
   C2S_Logout({ dispatch, commit, state, rootState, getters, rootGetters }, payload) {
       dispatch("setting/showLoading", {}, { root: true });
       dispatch("beforeSend", { cmd: Command.C2S_Logout, data: payload });
@@ -471,6 +539,11 @@ const mutations = {
     },
     CP_PlayerJoinLobbyAck() {
         state.position = Position.Lobby;
+        console.log(state.position);
+    },
+    CP_PlayerJoinTable() {
+        state.position = Position.Room;
+        console.log(state.position);
     },
     CP_TableFlowHandupPlayers(state, payload) {
         state.handsupCountdown = payload.data.Time;
@@ -481,7 +554,20 @@ const mutations = {
         }
         console.log("倒數囉哥哥",payload.data.Time);
     },
-
+    CP_PlayerSeatHandUpAck(state, payload){
+        state.handupAlready = ! state.handupAlready;
+    },
+    CP_TableFlowSeatCard(state, payload){
+        state.showhandcards = true;
+        state.handcards = payload.data.pokers;
+        console.log(state.handcards);
+    },
+    CP_TableFlowChoosePattern(state, payload){
+        state.choosetime = payload.data.time;
+    },
+    CP_TableFlowDecisionDone(state, payload){
+        state.showhandcards = false;
+    },
 }
 
 export default {

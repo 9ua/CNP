@@ -21,7 +21,7 @@
             <div :v-model="$store.state.socket.handsupCountdown"> 
              <h2 style="color:#ffffff">{{$store.state.socket.handsupCountdown}} 秒</h2> 
             </div>
-            <button @click="handup" style="height:40px;background:red;margin:0 auto"> 確認</button>
+            <button v-show="$store.state.socket.handupAlready === false" @click="handup" style="height:40px;background:red;margin:0 auto"> 確認</button>
       </div>
       <div class="popup_mask" v-show="handupPop" @click="handupPop =! handupPop"></div>
     </div>
@@ -55,20 +55,12 @@ export default {
 
   },
   methods: {
-    ...mapActions("socket", ["CP_PlayerListRooms","CP_PlayerJoinRoom"]),
+    ...mapActions("socket", ["CP_PlayerListRooms","CP_PlayerJoinRoom","CP_PlayerSeatHandUp"]),
     room() {
       this.CP_PlayerListRooms();
       this.roomList = this.$store.state.socket.roomList;
       console.log(this.roomList,"WHATTTT" ,this.$store.state.socket.roomList);
       this.roomlistwrap =! this.roomlistwrap;
-    },
-    btnopen(){
-          this.btn1Open =! this.btn1Open;
-          this.getListRoom();
-          console.log(this.btn1Open);
-    },
-    handup(){
-      console.log("真的假的倒數喔",this.$store.state.socket.handsupCountdown,this.$store.state.socket.roomType)
     },
     joinRoom(item){
       let payload = item.id;
@@ -76,7 +68,11 @@ export default {
       this.CP_PlayerJoinRoom(payload);
       this.roomlistwrap =! this.roomlistwrap;
       this.handupPop =! this.handupPop;
-    }
+    },
+    handup(){
+      this.CP_PlayerSeatHandUp();
+      
+    },
 
   },
 }

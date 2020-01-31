@@ -7,12 +7,14 @@
 
 <script>
 import GameLobby from "./gameLobby";
+import GameTable from "./gameTable";
 import { mapGetters, mapState, mapActions } from "vuex";
 
 
 export default {
   components: {
-    GameLobby
+    GameLobby,
+    GameTable
   },
   computed: {
     ...mapGetters("socket", ["inLobby", "inRoom"]),
@@ -35,7 +37,7 @@ export default {
   },
   methods: {
     wsConnect(){
-      let gameServer =`ws://`;
+      let gameServer =`ws://13.230.92.57:8081/ws`;
       this.$store.dispatch("socket/connect", { gameServer });
     },
     getConfigResult (res) {

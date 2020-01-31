@@ -38,6 +38,17 @@ export const Command = {
 	PlayerLeaveRoom    : 11021,
 	PlayerLeaveRoomAck : 10021,
 
+	TableCreate         : 90000,
+	TableFlowHandup     : 90010,
+	TableFlowInit       : 90020,
+	TableFlowGameBegin  : 90030,
+	TableFlowDecision   : 90040,
+	TableFlowCompare    : 90050,
+	TableFlowSettlement : 90070,
+	TableFlowEnd        : 90080,
+	TableFlowCancel     : 90090,
+
+
 	GamePlayerInfo : 90001,
 	TableFlowHandupPlayers : 90011,
 	GameRoomRule  : 90022,
@@ -94,7 +105,7 @@ export const CommandMap = {
 	[Command.PlayerJoinRoomAck]  : "CP_JoinRoomAck",
 
 	[Command.PlayerWaitToJoinTable] : "CP_PlayerWaitToJoinTable",
-	[Command.PlayerJoinTable]       : "PCP_layerJoinTable",
+	[Command.PlayerJoinTable]       : "CP_PlayerJoinTable",
 	[Command.PlayerLeaveTable]     : "CP_PlayerLeaveTable",
 	[Command.PlayerSeatHandUp]     : "CP_PlayerSeatHandUp",
 
@@ -112,8 +123,24 @@ export const CommandMap = {
 	[Command.PlayerListRooms]   : "CP_PlayerListRooms",
 	[Command.PlayerListRoomsAck] : "CP_PlayerListRoomsAck",
 
+	
+
+
 	[Command.PlayerLeaveRoom]    : "CP_PlayerLeaveRoom",
 	[Command.PlayerLeaveRoomAck] : "CP_PlayerLeaveRoomAck",
+
+	[Command.TableCreate ]        : "CP_TableCreate",
+	[Command.TableFlowHandup]     : "CP_TableFlowHandup",
+	[Command.TableFlowInit]       : "CP_TableFlowInit",
+	[Command.TableFlowGameBegin]  : "CP_TableFlowGameBegin",
+	[Command.TableFlowDecision]   : "CP_TableFlowDecision",
+	[Command.TableFlowCompare]    : "CP_TableFlowCompare",
+	[Command.TableFlowSettlement] : "CP_TableFlowSettlement",
+	[Command.TableFlowEnd]        : "CP_TableFlowEnd",
+	[Command.TableFlowCancel]     : "CP_TableFlowCancel",
+
+
+
 	[Command.TableFlowHandupPlayers] : "CP_TableFlowHandupPlayers",
 	[Command.GameRoomRule]  : "CP_GameRoomRule",
 	[Command.GameTableRule] : "CP_GameTableRule",

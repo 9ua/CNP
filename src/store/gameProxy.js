@@ -52,7 +52,7 @@ console.log(proxy,"gameproxy匯出")
                     // proxy.store.dispatch("log/append", ["connect", gameServer]);
                     break;
                 case "socket/send":
-                    console.log("socket/sen");
+                    console.log("發送訊息skt",payload);
                     const { cmd } = payload;
                     switch (cmd) {
                         case Command.C2S_PingPong:

@@ -1,22 +1,16 @@
 <template>
-  <div class="lobby">
-    <div class="popup_wrapper" v-show="roomlistwrap">
-      <div style="height:100%;width:100vw;overflow:scroll;">
-        <ul  style="width:3000px;height:100%;display:flex; clear: both;">
-          <li v-for="(item, index) in roomList" :key="index" style="float:left;width:30vw;text-align:center; height:80vh; margin:20px;background:#999;color:#fff;display:block;">
-            <div style="height:80%">
-            index:{{index}}, name:  {{item.name}} <br>
-            一分 {{item.lower_amount}} 
-            </div>
-            <button @click="joinRoom(item)" style="height:40px;background:red;margin:0 auto"> 加入牌桌</button>
+  <div class="table" style="width:100%">
+    <h2 :v-model="$store.state.socket.choosetime">{{$store.state.socket.choosetime}}</h2>
+    <div style="position:absolute;bottom: 0px; width:80%; margin:auto ">
+        <ul v-show="$store.state.socket.showhandcards" style="width:100%;height:25vh;display:flex; clear: both;">
+          <li  v-for="(item, index) in $store.state.socket.handcards" :key="index" style="border:3px #FFAC55 solid;margin-left:-3%;float:left;width:10%;text-align:center; height:80%; margin:2px;background:#999;color:#fff;display:block;">
+            <img :src="'assets/'+item+'.png'" alt="">
+            index:{{index}}<br>
+            cards:  {{item}} 
           </li>
         </ul>
-      </div>
-      <div class="popup_mask" v-show="roomlistwrap" @click="roomlistwrap =! roomlistwrap"></div>
     </div>
-      <h2 class="divid">123</h2>
-      <button class="btn1" v-on:click="room"> 俱樂部 </button>
-      <button class="btn1"> 錦標賽 </button>
+
   </div>
 </template>
 
@@ -27,13 +21,17 @@ export default {
   computed: {
     ...mapState("game", ["gameState"]),
   },
-  name: 'gameLobby',
+  name: 'gameTable',
   data () {
     return {
         btn1Open:false,
         roomList:[],
         respon: [],
         roomlistwrap:false,
+        classList:{
+            active: true,
+            hasError: true
+        }
     }
   },
   created() {
