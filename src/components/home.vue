@@ -75,4 +75,12 @@ li {
 a {
   color: #42b983;
 }
+.hello {
+  height: 100%;
+  overflow:hidden;
+}
+.hello:after{
+  min-height: 100%;
+  clear: both; 
+}
 </style>

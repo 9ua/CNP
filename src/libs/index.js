@@ -1,5 +1,5 @@
 // import { Prefix, Command, CommandMap } from './Command'
-import { Command, CommandMap } from './Command'
+import { Command, CommandMap,CardPattern } from './Command'
 import { SocketProxy } from './SocketProxy'
 import { Position } from './Position'
 // import { Auth } from './Auth'
@@ -30,6 +30,7 @@ export {
     CommandMap,
     SocketProxy,
     Position,
+    CardPattern,
     // Popup,
     // Auth,
     // CoinMap,

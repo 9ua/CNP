@@ -12,8 +12,9 @@ export const Command = {
 	CommonBroadcast:11005,
 	CommonBroadcastAck:10005,
 	CommonMaintain:11006,
-    CommonMaintainAck:10006,
-    
+	CommonMaintainAck:10006,
+	CommonPlayerInfo    : 11007,
+ 	CommonPlayerInfoAck : 10007,
     PlayerJoinLobby:11011,
 	PlayerJoinRoom  : 11012,
 	PlayerJoinLobbyAck : 10011,
@@ -34,7 +35,8 @@ export const Command = {
 
 	PlayerListRooms    : 11020,
 	PlayerListRoomsAck : 10020,
-
+	PlayerSeatCommitCards    :11022,
+	PlayerSeatCommitCardsAck :10022,
 	PlayerLeaveRoom    : 11021,
 	PlayerLeaveRoomAck : 10021,
 
@@ -108,7 +110,8 @@ export const CommandMap = {
 	[Command.PlayerJoinTable]       : "CP_PlayerJoinTable",
 	[Command.PlayerLeaveTable]     : "CP_PlayerLeaveTable",
 	[Command.PlayerSeatHandUp]     : "CP_PlayerSeatHandUp",
-
+	[Command.PlayerSeatCommitCards] : "PlayerSeatCommitCards",
+	[Command.PlayerSeatCommitCardsAck]: "PlayerSeatCommitCardsAck",
 
 	[Command.GamePlayerInfo] : "CP_GamePlayerInfo",
 
@@ -122,7 +125,8 @@ export const CommandMap = {
 
 	[Command.PlayerListRooms]   : "CP_PlayerListRooms",
 	[Command.PlayerListRoomsAck] : "CP_PlayerListRoomsAck",
-
+	[Command.CommonPlayerInfo] : "CP_CommonPlayerInfo",
+	[Command.CommonPlayerInfoAck] : "CP_CommonPlayerInfoAck",
 	
 
 
@@ -227,5 +231,35 @@ export const PokerCard = {
 	112:	"QueenOfClub",
 	113:	"KingOfClub",
 
+
+}
+export const CardPattern = {
+[0]: "CARD_FAILED",
+[1]: "CARD_RECOM_FAILED",
+[2]: "散牌",
+[3]: "假一對",
+[4]: "正一對",
+[5]: "假兩對",
+[6]: "正兩對",
+[7]: "假三條",
+[8]: "正三條",
+[9]: "假順子",
+[10]: "正順子",
+[11]: "假同花",
+[12]: "正同花",
+[13]: "假一對同花",
+[14]: "正一對同花",
+[15]: "假兩對同花",
+[16]: "正兩對同花",
+[17]: "假三條同花",
+[18]: "正三條同花",
+[19]: "假葫蘆",
+[20]: "正葫蘆",
+[21]: "假鐵支",
+[22]: "正鐵支",
+[23]: "假柳丁",
+[24]: "正柳丁",
+[25]: "假五梅",
+[26]: "正五梅",
 
 }

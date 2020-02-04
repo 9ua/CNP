@@ -28,7 +28,7 @@ console.log(proxy,"gameproxy匯出")
                 case Command.S2C_PingPongAck:
                     break;
                 default:
-                    console.log("gameProxy 收到訊息",["onmessage", CommandMap[cmd], payload])
+                    // console.log("gameProxy 收到訊息",["onmessage", CommandMap[cmd], payload])
                     // store.dispatch("log/append", ["onmessage", CommandMap[cmd], payload]);
                     break;
             }
@@ -41,7 +41,7 @@ console.log(proxy,"gameproxy匯出")
         };
         // proxy.connect(`ws://13.230.92.57:8081/ws`);
         store.subscribeAction((action, state) => {
-            console.log(action,"subAct觸發");
+            // console.log(action,"subAct觸發");
             const { type, payload } = action;
             switch (type) {
                 case "socket/connect":
